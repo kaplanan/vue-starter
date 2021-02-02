@@ -23,7 +23,7 @@ export default class App extends Vue {
   public _welcomeMsg!: string
 
   created () {
-    this.welcomeMsg = 'vue-starer on air!'
+    this.welcomeMsg = 'vue-starter on air!'
   }
 
   get welcomeMsg (): string {
