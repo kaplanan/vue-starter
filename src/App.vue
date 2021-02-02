@@ -1,32 +1,37 @@
 <template>
   <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
+    <!-- <AppNavBar/> -->
+    <div id="page-content">
+      <router-view/>
     </div>
-    <router-view/>
+    <!-- <AppFooter/> -->
   </div>
 </template>
 
-<style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
+<script lang="ts">
+import { Vue, Component } from 'vue-property-decorator'
+// import AppNavBar from './components/AppNavBar.vue'
+// import AppFooter from './components/AppFooter.vue'
 
-#nav {
-  padding: 30px;
-}
+@Component({
+  // components: {
+  //   AppNavBar,
+  //   AppFooter
+  // }
+})
+export default class App extends Vue {
+  public _welcomeMsg!: string
 
-#nav a {
-  font-weight: bold;
-  color: #2c3e50;
-}
+  created () {
+    this.welcomeMsg = 'vue-starer on air!'
+  }
 
-#nav a.router-link-exact-active {
-  color: #42b983;
+  get welcomeMsg (): string {
+    return this.$store.getters('getWelcomeMsg')
+  }
+
+  set welcomeMsg (value: string) {
+    this.$store.dispatch('setWelcomeMsg', value)
+  }
 }
-</style>
+</script>
